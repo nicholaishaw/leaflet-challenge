@@ -50,39 +50,13 @@ d3.json(URL).then(function (data){
 function createMap(earthquakes){
     let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      })
-      //.addTo(map)
-    //   earthquakes.addTo(map)
-    let topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-      });    
-    let tectonic_plates = new L.layerGroup()
-    //let earthquakes = new L.layerGroup()
+      })  
 
     let map = L.map("map", {
         center: [40, 90],
         zoom: 2,
         layers: [street, earthquakes]
     })
-    let baseMaps = {
-        "Street Map": street,
-        "Topographic Map": topo
-      };
-    
-    let overlayMaps = {
-        Earthquakes: earthquakes, 
-        tectonic_plates : tectonic_plates};
-    //adding tectonic layer to the map
-    d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function (tectonic_data){
-            L.geoJson(tectonic_data, {
-                color: "Orange"
-            }).addTo(tectonic_plates)
-            tectonic_plates.addTo(map)
-        })
-        // "Tectonic Plates" : tectonic_plates}
-    L.control.layers(baseMaps, overlayMaps, {
-        collapsed: true
-      }).addTo(map);
 
 
 //Creating a legend control object. This code was developed with the assistance of David Chao
