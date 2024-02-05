@@ -6,9 +6,7 @@ The United States Geological Survey, or USGS for short, is responsible for provi
 In this fictional challenge, the USGS is interested in building a new set of tools that will allow them to visualize their earthquake data. They collect a massive amount of data from all over the world each day, but they lack a meaningful way of displaying it. I have been tasked with developing a way to visualize USGS data that will allow them to better educate the public and other government organizations (and hopefully secure more funding) on issues facing our planet.
 
 ## Earthquake Visualization
-Your first task is to visualize an earthquake dataset. Complete the following steps:
-
-Get your dataset. To do so, follow these steps:
+My first task was to visualize an earthquake dataset. To do so, I located the data source, used the D3 library to import the data, and created the map using javascript:
 
 **Data Source.** The USGS provides earthquake data in a number of different formats, updated every 5 minutes. Visit the USGS GeoJSON FeedLinks to an external site. page and choose a dataset to visualize. The following image is an example screenshot of what appears when you visit this link:
 
