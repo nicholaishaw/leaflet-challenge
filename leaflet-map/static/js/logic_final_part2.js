@@ -1,16 +1,19 @@
-//The following code was developed with the assistance of tutors Sandhya Kumari (map creation and tectonic plate additions), Mark Fullton (pop ups and markers), and David Chao (legend creation and legend formatting)
-
+//URL containing the earthquake dataset in JSON format
 let URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson"
 
+//Fetching the data using the D3 library
 d3.json(URL).then(function (data){
     console.log(data)
     createFeatures(data)
 });
+
+    //Create the popups for each earthquake which will display the place, magnitude, and coordinates of each earthquake
     function createFeatures(earthquakedata){
         function onEachFeature(feature, layer){
             layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Magnitude: ${feature.properties.mag}</p><hr><p>Depth: ${feature.geometry.coordinates[2]}`)
         }
 
+        //This will read the dataset as Geo JSON format and create circles with colors and sizes reflecting their magnitude and depth
         let earthquakes = L.geoJSON(earthquakedata, {
             onEachFeature : onEachFeature,
             pointToLayer: function(feature_data, lat_lon){
@@ -34,6 +37,8 @@ d3.json(URL).then(function (data){
                 else {
                     color = "#98ee00"
                 }
+                
+                //This will alter the size (radius) of the circle depending on the magnitude
                 let magnitude = feature_data.properties.mag
                 return L.circleMarker(lat_lon, {
                     fillColor: color,
@@ -43,10 +48,13 @@ d3.json(URL).then(function (data){
                 })
             }
         })
+        
+        //Call the createmap function and passing the earthquakes information declared above on the map
         createMap(earthquakes);
   
 }
 
+//This will create the actual map with topographic and street layers
 function createMap(earthquakes){
     let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,7 +79,7 @@ function createMap(earthquakes){
         Earthquakes: earthquakes, 
         tectonic_plates : tectonic_plates};
 
-    //adding tectonic layer to the map
+    //This will scrape the tectonic plate data from a Github repository and assign the color orange to it
     d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function (tectonic_data){
             L.geoJson(tectonic_data, {
                 color: "Orange"
@@ -79,13 +87,13 @@ function createMap(earthquakes){
             tectonic_plates.addTo(map)
         })
         
-        // "Tectonic Plates" : tectonic_plates}
+    //Adding this is a layer to the map
     L.control.layers(baseMaps, overlayMaps, {
         collapsed: true
       }).addTo(map);
 
 
-//Creating a legend control object. This code was developed with the assistance of David Chao
+//Creating a legend control object. This will add the legend with each of the color and depth options
 let legend = L.control({
     position: "bottomright"
   });
