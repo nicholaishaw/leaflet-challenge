@@ -8,7 +8,7 @@ In this fictional challenge, the USGS is interested in building a new set of too
 ## Earthquake Visualization
 My first task was to visualize an earthquake dataset. To do so, I located the data source, used the D3 library to import the data, and created the map using javascript:
 
-**Data Source.** The USGS provides earthquake data in a number of different formats, updated every 5 minutes. I visited the USGS GeoJSON Feed [https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php] page and choose a dataset to visualize. The following image is an example screenshot of what appears when you visit this link:
+**Data Source.** The USGS provides earthquake data in a number of different formats, updated every 5 minutes. I visited the [USGS GeoJSON Feed] "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" page and choose a dataset to visualize. The following image is an example screenshot of what appears when you visit this link:
 
 ![image](https://github.com/nicholaishaw/leaflet-challenge/assets/135463220/2cb002a4-4f97-4e2a-8e70-e20eb0e4f770)
 
